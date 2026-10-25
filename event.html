@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تفاصيل الفعالية وموعدها ومكانها والحجز.">
+  <title>تفاصيل الفعالية - دليل فعاليات SVU</title>
+
+  <!-- أيقونة التبويب -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Bootstrap نسخة RTL للعربية -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+  <!-- أيقونات Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- ملف التنسيق الخاص بنا -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- ========== الترويسة: الشعار + القائمة ========== -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-svu-blue shadow-sm">
+      <div class="container">
+        <!-- الشعار واسم الدليل -->
+        <a class="navbar-brand d-flex align-items-center gap-2 me-0 me-lg-4" href="index.html">
+          <span class="brand-logo"><img src="assets/img/logo-mark.png" alt="شعار الجامعة الافتراضية السورية"></span>
+          <span class="brand-text">
+            <span class="fw-bold">دليل فعاليات SVU</span>
+            <small>الجامعة الافتراضية السورية</small>
+          </span>
+        </a>
+
+        <div class="d-flex align-items-center gap-2 order-lg-last">
+          <!-- زر الوضع الداكن -->
+          <button id="themeToggle" class="btn theme-toggle" type="button" aria-label="تبديل الوضع الداكن">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+          <!-- زر القائمة للجوال -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="فتح القائمة">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- روابط الصفحات -->
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="index.html">الرئيسية</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active-svu px-3" href="events.html" aria-current="page">كل الفعاليات</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="about.html">عن الدليل</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="contact.html">اتصل بنا</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== المحتوى الرئيسي ========== -->
+  <main class="container my-5">
+
+    <!-- رسالة تظهر إذا كان رقم الفعالية غير صحيح -->
+    <div id="eventNotFound" class="alert alert-warning text-center d-none">
+      <h1 class="h4 fw-bold">الفعالية غير موجودة</h1>
+      <p>ربما تم حذف الفعالية أو أن الرابط غير صحيح.</p>
+      <a href="events.html" class="btn btn-svu-gold">العودة إلى كل الفعاليات</a>
+    </div>
+
+    <div id="eventContent">
+      <!-- مسار التنقل -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-svu-blue">الرئيسية</a></li>
+          <li class="breadcrumb-item"><a href="events.html" class="text-decoration-none text-svu-blue">كل الفعاليات</a></li>
+          <li class="breadcrumb-item active" id="breadcrumbTitle" aria-current="page">...</li>
+        </ol>
+      </nav>
+
+      <div class="row g-4">
+
+        <!-- العمود الأول: تفاصيل الفعالية -->
+        <div class="col-12 col-lg-8">
+          <article class="card border-0 shadow-sm mb-4">
+            <img id="detailImg" src="assets/img/logo-full.png" class="detail-img" alt="صورة الفعالية">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+                <span id="detailBadge" class="badge"></span>
+                <span id="detailStatus"></span>
+              </div>
+
+              <h1 id="detailTitle" class="h3 fw-bold text-svu-blue mb-3">...</h1>
+              <p id="detailDesc" class="text-secondary mb-4"></p>
+
+              <h2 class="h5 fw-bold text-svu-blue mb-3">محاور الفعالية:</h2>
+              <ul id="detailTopics" class="text-secondary mb-4"></ul>
+
+              <div class="speaker-box mb-4">
+                <h3 class="h6 fw-bold mb-1"><i class="bi bi-mic"></i> المحاضر / الجهة المنظمة:</h3>
+                <p id="detailSpeaker" class="text-muted mb-0 small"></p>
+              </div>
+
+              <!-- معرض الصور -->
+              <h2 class="h5 fw-bold text-svu-blue mb-3">معرض الصور</h2>
+              <div id="detailGallery" class="row g-2"></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- العمود الثاني: معلومات سريعة + الأزرار + الخريطة -->
+        <aside class="col-12 col-lg-4">
+          <div class="card border-0 shadow-sm p-4 mb-4">
+            <h2 class="h5 fw-bold text-svu-blue mb-3">معلومات الفعالية</h2>
+            <ul class="info-list list-unstyled small mb-4">
+              <li><i class="bi bi-calendar-event"></i><div><strong>التاريخ:</strong> <span id="detailDate"></span></div></li>
+              <li><i class="bi bi-clock"></i><div><strong>الوقت:</strong> <span id="detailTime"></span></div></li>
+              <li><i class="bi bi-geo-alt"></i><div><strong>المكان:</strong> <span id="detailLocation"></span></div></li>
+              <li><i class="bi bi-person-check"></i><div><strong>المقاعد:</strong> <span id="detailSeats"></span></div></li>
+              <li><i class="bi bi-award"></i><div><strong>الشهادة:</strong> شهادة حضور إلكترونية</div></li>
+            </ul>
+
+            <!-- زر الحجز يفتح Modal -->
+            <button id="openBooking" class="btn btn-svu-gold w-100 py-2 mb-2" type="button"
+              data-bs-toggle="modal" data-bs-target="#bookingModal">
+              <i class="bi bi-ticket-perforated"></i> احجز مقعدك
+            </button>
+
+            <div class="d-flex gap-2">
+              <!-- أضف للتقويم -->
+              <div class="dropdown flex-fill">
+                <button class="btn btn-outline-svu w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-calendar-plus"></i> أضف للتقويم
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a id="googleCalendarLink" class="dropdown-item" href="#" target="_blank" rel="noopener"><i class="bi bi-google"></i> Google Calendar</a></li>
+                  <li><a id="icsDownload" class="dropdown-item" href="#"><i class="bi bi-download"></i> ملف ics (Outlook / Apple)</a></li>
+                </ul>
+              </div>
+              <!-- شارك -->
+              <div class="dropdown flex-fill">
+                <button class="btn btn-outline-svu w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-share"></i> شارك
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a id="copyLink" class="dropdown-item" href="#"><i class="bi bi-link-45deg"></i> نسخ الرابط</a></li>
+                  <li><a id="shareWhatsapp" class="dropdown-item" href="#" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> واتساب</a></li>
+                  <li><a id="shareTelegram" class="dropdown-item" href="#" target="_blank" rel="noopener"><i class="bi bi-telegram"></i> تيليغرام</a></li>
+                  <li><a id="shareFacebook" class="dropdown-item" href="#" target="_blank" rel="noopener"><i class="bi bi-facebook"></i> فيسبوك</a></li>
+                  <li><a id="shareX" class="dropdown-item" href="#" target="_blank" rel="noopener"><i class="bi bi-twitter-x"></i> X</a></li>
+                </ul>
+              </div>
+            </div>
+            <div id="shareAlert" class="alert alert-success small py-2 mt-3 mb-0 d-none">
+              <i class="bi bi-check2"></i> تم نسخ رابط الفعالية.
+            </div>
+          </div>
+
+          <!-- الخريطة (صورة ثابتة) -->
+          <div class="card border-0 shadow-sm p-3">
+            <h2 class="h6 fw-bold text-svu-blue mb-2"><i class="bi bi-map"></i> موقع الفعالية</h2>
+            <img id="detailMap" class="map-img" src="assets/img/map-online.svg" alt="خريطة موقع الفعالية">
+          </div>
+        </aside>
+      </div>
+
+      <!-- فعاليات ذات صلة -->
+      <section class="mt-5" aria-labelledby="relatedTitle">
+        <h2 id="relatedTitle" class="h4 fw-bold text-svu-blue mb-3 section-title">فعاليات ذات صلة</h2>
+        <div id="relatedEvents" class="row g-4"></div>
+      </section>
+    </div>
+
+    <!-- ===== Modal حجز المقعد ===== -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h5 fw-bold" id="bookingModalLabel">حجز مقعد</h2>
+            <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+          </div>
+          <div class="modal-body">
+            <p class="small text-muted mb-3">الفعالية: <strong id="bookingEventTitle"></strong></p>
+            <div id="bookingAlert" class="alert small d-none" role="alert"></div>
+
+            <form id="bookingForm" novalidate>
+              <div class="mb-3">
+                <label for="bookName" class="form-label small fw-semibold">الاسم الثلاثي</label>
+                <input type="text" class="form-control" id="bookName" placeholder="مثال: أحمد محمد علي">
+                <div class="invalid-feedback">الاسم مطلوب (3 أحرف على الأقل).</div>
+              </div>
+              <div class="mb-3">
+                <label for="bookId" class="form-label small fw-semibold">الرقم الجامعي (ID)</label>
+                <input type="text" class="form-control" id="bookId" placeholder="مثال: 123456" inputmode="numeric">
+                <div class="invalid-feedback">أدخل رقماً جامعياً صحيحاً (أرقام فقط، من 4 إلى 10 خانات).</div>
+              </div>
+              <div class="mb-3">
+                <label for="bookEmail" class="form-label small fw-semibold">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="bookEmail" placeholder="name@svuonline.org">
+                <div class="invalid-feedback">أدخل بريداً إلكترونياً بصيغة صحيحة.</div>
+              </div>
+              <button type="submit" class="btn btn-svu-gold w-100">تأكيد الحجز</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Modal عرض صورة المعرض مكبّرة ===== -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-label="عرض الصورة" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-transparent border-0">
+          <button type="button" class="btn-close btn-close-white ms-auto mb-2" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+          <img id="imageModalImg" src="" class="img-fluid rounded" alt="صورة مكبّرة من معرض الفعالية">
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========== التذييل: نبذة + روابط + تواصل ========== -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="brand-logo brand-logo-sm"><img src="assets/img/logo-mark.png" alt="شعار الجامعة الافتراضية السورية"></span>
+            <h3 class="h6 fw-bold mb-0">دليل فعاليات SVU</h3>
+          </div>
+          <p class="small text-white-50 mb-3">
+            الدليل الموحد للأنشطة الثقافية والرياضية والأكاديمية والمهنية لطلاب الجامعة الافتراضية السورية.
+          </p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/SVUonline" target="_blank" rel="noopener" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://t.me/" target="_blank" rel="noopener" aria-label="تيليغرام"><i class="bi bi-telegram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="يوتيوب"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="إنستغرام"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h3 class="h6 fw-bold mb-3">روابط سريعة</h3>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2"><a href="index.html">الرئيسية</a></li>
+            <li class="mb-2"><a href="events.html">كل الفعاليات</a></li>
+            <li class="mb-2"><a href="about.html">عن الدليل</a></li>
+            <li class="mb-2"><a href="contact.html">اتصل بنا</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-4">
+          <h3 class="h6 fw-bold mb-3">تواصل معنا</h3>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2"><i class="bi bi-envelope"></i> <a href="mailto:info@svuonline.org">info@svuonline.org</a></li>
+            <li class="mb-2"><i class="bi bi-telephone"></i> <span dir="ltr">+963 11 0000000</span></li>
+            <li class="mb-2"><i class="bi bi-geo-alt"></i> دمشق - الجمهورية العربية السورية</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom text-center mt-4 pt-3">
+        <p class="mb-0 small text-white-50">جميع الحقوق محفوظة © 2026 - دليل فعاليات الجامعة الافتراضية السورية SVU</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== ملفات JavaScript ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

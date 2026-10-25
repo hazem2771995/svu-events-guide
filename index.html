@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="دليل فعاليات الجامعة الافتراضية السورية: الفعاليات البارزة وأحدث الأنشطة.">
+  <title>الرئيسية - دليل فعاليات SVU</title>
+
+  <!-- أيقونة التبويب -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Bootstrap نسخة RTL للعربية -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+  <!-- أيقونات Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- ملف التنسيق الخاص بنا -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- ========== الترويسة: الشعار + القائمة ========== -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-svu-blue shadow-sm">
+      <div class="container">
+        <!-- الشعار واسم الدليل -->
+        <a class="navbar-brand d-flex align-items-center gap-2 me-0 me-lg-4" href="index.html">
+          <span class="brand-logo"><img src="assets/img/logo-mark.png" alt="شعار الجامعة الافتراضية السورية"></span>
+          <span class="brand-text">
+            <span class="fw-bold">دليل فعاليات SVU</span>
+            <small>الجامعة الافتراضية السورية</small>
+          </span>
+        </a>
+
+        <div class="d-flex align-items-center gap-2 order-lg-last">
+          <!-- زر الوضع الداكن -->
+          <button id="themeToggle" class="btn theme-toggle" type="button" aria-label="تبديل الوضع الداكن">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+          <!-- زر القائمة للجوال -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="فتح القائمة">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- روابط الصفحات -->
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item">
+              <a class="nav-link active-svu px-3" href="index.html" aria-current="page">الرئيسية</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="events.html">كل الفعاليات</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="about.html">عن الدليل</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="contact.html">اتصل بنا</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== المحتوى الرئيسي ========== -->
+  <main class="container my-4">
+
+    <!-- معلومات فريق العمل (شرط إلزامي في المشروع) -->
+    <section class="alert alert-info border-0 shadow-sm mb-4" aria-label="معلومات الطلاب">
+      <h2 class="h6 fw-bold mb-2"><i class="bi bi-people-fill"></i> معلومات الطلاب ومعدّي المشروع:</h2>
+      <ul class="mb-0">
+        <li>الطالب 1: حازم حسن محفوض - ID: 237350</li>
+        <li>الطالب 2: رند عرفان مطر - ID: rand_293632</li>
+        <li>الطالب 3: رؤى محمد وائل سيفو - ID: rowa_sefo_197778</li>
+        <li>الطالب 4: عامر ياسر الفاضل - ID: amer_282967</li>
+        <li>الطالب 5: نور خالد الحواج - ID: nour_289543</li>
+      </ul>
+    </section>
+
+    <!-- القسم الترحيبي -->
+    <section class="hero text-center mb-4 shadow-sm">
+      <h1 class="display-6 fw-bold mb-3">اعبر حدود الزمان والمكان</h1>
+      <p class="lead mb-4">
+        الدليل الجامعي الموحّد للأنشطة الثقافية والرياضية وورشات العمل والفعاليات الأكاديمية في الجامعة الافتراضية السورية.
+      </p>
+      <a href="events.html" class="btn btn-svu-gold px-4 py-2">استكشف كافة الفعاليات</a>
+    </section>
+
+    <!-- بطاقة الحدث اليوم / الحدث القادم (تُملأ بالـ JS) -->
+    <div id="todayEvent" class="mb-5"></div>
+
+    <!-- 1. فعاليات بارزة هذا الأسبوع (سلايدر) -->
+    <section class="mb-5" aria-labelledby="featuredTitle">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 id="featuredTitle" class="h3 fw-bold text-svu-blue mb-0 section-title">فعاليات بارزة هذا الأسبوع</h2>
+        <a href="events.html" class="text-decoration-none fw-semibold text-svu-blue">عرض الكل ←</a>
+      </div>
+
+      <div id="featuredCarousel" class="carousel slide shadow-sm">
+        <div class="carousel-indicators" id="featuredIndicators"></div>
+        <div class="carousel-inner" id="featuredInner"></div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">السابق</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">التالي</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. التصنيفات السريعة -->
+    <section class="mb-5" aria-labelledby="catTitle">
+      <h2 id="catTitle" class="h3 fw-bold text-svu-blue mb-3 section-title">تصفّح حسب التصنيف</h2>
+      <div id="quickCategories" class="category-grid"></div>
+    </section>
+
+    <!-- 3. أحدث الفعاليات -->
+    <section class="mb-4" aria-labelledby="latestTitle">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 id="latestTitle" class="h3 fw-bold text-svu-blue mb-0 section-title">أحدث الفعاليات</h2>
+        <a href="events.html" class="text-decoration-none fw-semibold text-svu-blue">كل الفعاليات ←</a>
+      </div>
+      <div id="latestEvents" class="row g-4"></div>
+    </section>
+
+  </main>
+
+  <!-- ========== التذييل: نبذة + روابط + تواصل ========== -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="brand-logo brand-logo-sm"><img src="assets/img/logo-mark.png" alt="شعار الجامعة الافتراضية السورية"></span>
+            <h3 class="h6 fw-bold mb-0">دليل فعاليات SVU</h3>
+          </div>
+          <p class="small text-white-50 mb-3">
+            الدليل الموحد للأنشطة الثقافية والرياضية والأكاديمية والمهنية لطلاب الجامعة الافتراضية السورية.
+          </p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/SVUonline" target="_blank" rel="noopener" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://t.me/" target="_blank" rel="noopener" aria-label="تيليغرام"><i class="bi bi-telegram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="يوتيوب"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="إنستغرام"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h3 class="h6 fw-bold mb-3">روابط سريعة</h3>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2"><a href="index.html">الرئيسية</a></li>
+            <li class="mb-2"><a href="events.html">كل الفعاليات</a></li>
+            <li class="mb-2"><a href="about.html">عن الدليل</a></li>
+            <li class="mb-2"><a href="contact.html">اتصل بنا</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-4">
+          <h3 class="h6 fw-bold mb-3">تواصل معنا</h3>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2"><i class="bi bi-envelope"></i> <a href="mailto:info@svuonline.org">info@svuonline.org</a></li>
+            <li class="mb-2"><i class="bi bi-telephone"></i> <span dir="ltr">+963 11 0000000</span></li>
+            <li class="mb-2"><i class="bi bi-geo-alt"></i> دمشق - الجمهورية العربية السورية</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom text-center mt-4 pt-3">
+        <p class="mb-0 small text-white-50">جميع الحقوق محفوظة © 2026 - دليل فعاليات الجامعة الافتراضية السورية SVU</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== ملفات JavaScript ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

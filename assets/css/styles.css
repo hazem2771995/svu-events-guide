@@ -1,0 +1,417 @@
+/* ===================================================
+   دليل فعاليات SVU - ملف التنسيقات
+   الهوية: كحلي (لون أساسي) + ذهبي (لون ثانوي) + خلفية رمادية فاتحة محايدة
+   مأخوذة من ألوان شعار الجامعة الافتراضية السورية
+   =================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+/* ---------- 1. متغيرات الألوان ---------- */
+/* نضع الألوان في متغيرات حتى نغيّرها مرة واحدة فقط في الوضع الداكن */
+:root {
+  --svu-blue: #00537e;        /* اللون الأساسي */
+  --svu-blue-dark: #002d45;   /* للتذييل والتدرجات */
+  --svu-gold: #c4a56c;        /* اللون الثانوي */
+  --svu-gold-dark: #a8894f;
+  --bg: #f4f6f9;              /* خلفية محايدة */
+  --surface: #ffffff;         /* خلفية الكروت */
+  --text: #212529;
+  --text-muted: #6c757d;
+  --border: #e3e7ee;
+  --radius: 12px;
+}
+
+/* الوضع الداكن: يكفي تغيير المتغيرات فتتغير كل العناصر التي تستخدمها */
+body.dark-mode {
+  --bg: #0f1923;
+  --surface: #1a2633;
+  --text: #e8edf2;
+  --text-muted: #a3b0bd;
+  --border: #2b3a4a;
+  --svu-blue: #4fa3d1;        /* أفتح قليلاً ليبقى مقروءاً على الخلفية الداكنة */
+}
+
+/* ---------- 2. الأساسيات ---------- */
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* flexbox يجعل التذييل في أسفل الشاشة حتى لو كان المحتوى قصيراً */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main { flex: 1; }
+
+/* إعادة تعريف ألوان Bootstrap العامة لتتبع متغيراتنا */
+.bg-white, .card { background-color: var(--surface) !important; color: var(--text); }
+.text-muted, .text-secondary { color: var(--text-muted) !important; }
+.bg-light { background-color: var(--bg) !important; }
+
+.text-svu-blue { color: var(--svu-blue) !important; }
+.section-title {
+  position: relative;
+  padding-inline-start: 14px;
+}
+/* خط ذهبي صغير بجانب عناوين الأقسام */
+.section-title::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 15%;
+  height: 70%;
+  width: 5px;
+  border-radius: 3px;
+  background: var(--svu-gold);
+}
+
+/* ---------- 3. شريط التنقل ---------- */
+.bg-svu-blue { background-color: #00537e !important; }
+
+.navbar .nav-link { border-radius: 6px; transition: background-color 0.2s; }
+.navbar .nav-link:hover { background-color: rgba(255, 255, 255, 0.12); }
+
+/* الرابط النشط باللون الذهبي */
+.nav-link.active-svu {
+  background-color: var(--svu-gold) !important;
+  color: #fff !important;
+}
+
+.theme-toggle {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.theme-toggle:hover { background-color: rgba(255, 255, 255, 0.15); color: #fff; }
+
+/* ---------- 4. الأزرار والشارات ---------- */
+.btn-svu-gold {
+  background-color: var(--svu-gold);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+.btn-svu-gold:hover, .btn-svu-gold:focus { background-color: var(--svu-gold-dark); color: #fff; }
+
+.btn-outline-svu {
+  border: 1px solid var(--svu-blue);
+  color: var(--svu-blue);
+  font-weight: 600;
+}
+.btn-outline-svu:hover { background-color: var(--svu-blue); color: #fff; }
+
+.badge-svu-gold { background-color: var(--svu-gold); color: #fff; }
+.badge-svu-blue { background-color: #00537e; color: #fff; }
+
+/* لون مميز لكل تصنيف حتى يتعرف عليه الزائر بسرعة */
+.badge-cat-tech     { background-color: #00537e; color: #fff; }
+.badge-cat-academic { background-color: #5b4b8a; color: #fff; }
+.badge-cat-career   { background-color: #a8894f; color: #fff; }
+.badge-cat-culture  { background-color: #b5523b; color: #fff; }
+.badge-cat-sports   { background-color: #2e8b57; color: #fff; }
+.badge-cat-music    { background-color: #8e3b7a; color: #fff; }
+.badge-cat-family   { background-color: #d17a22; color: #fff; }
+
+/* ---------- 5. القسم الترحيبي (Hero) ---------- */
+.hero {
+  background: linear-gradient(135deg, #00537e 0%, #002d45 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 3rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+/* دوائر زخرفية خفيفة في الخلفية */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 40px solid rgba(196, 165, 108, 0.18);
+  top: -120px;
+  inset-inline-end: -100px;
+}
+.hero h1, .carousel-overlay h3 { color: #fff; }
+.hero .lead { color: rgba(255, 255, 255, 0.85); }
+
+/* ---------- 6. بطاقة "الحدث اليوم" ---------- */
+.today-event {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 2px dashed var(--svu-gold);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+.today-label {
+  background: var(--svu-gold);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.today-body { flex: 1; min-width: 200px; }
+
+/* ---------- 7. السلايدر (Carousel) ---------- */
+#featuredCarousel { border-radius: var(--radius); overflow: hidden; }
+.carousel-img { height: 420px; object-fit: cover; }
+
+/* طبقة داكنة متدرجة فوق الصورة حتى يكون النص مقروءاً */
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 2rem 3.5rem 3rem;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 20, 35, 0.9) 0%, rgba(0, 20, 35, 0.35) 55%, transparent 100%);
+}
+
+/* ---------- 8. التصنيفات السريعة (CSS Grid) ---------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+.category-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 0.75rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.category-chip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+.category-chip .bi { font-size: 1.2rem; }
+
+/* ---------- 9. كروت الفعاليات ---------- */
+.card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 83, 126, 0.15) !important;
+}
+.event-img-wrap { position: relative; }
+.event-img { height: 190px; object-fit: cover; }
+.event-status { position: absolute; top: 10px; inset-inline-start: 10px; }
+.event-meta li { margin-bottom: 2px; }
+.event-meta .bi { color: var(--svu-gold); margin-inline-end: 4px; }
+
+/* ---------- 10. صفحة تفاصيل الفعالية ---------- */
+.detail-img { max-height: 380px; width: 100%; object-fit: cover; }
+.info-list li {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.info-list li:last-child { border-bottom: 0; }
+.info-list .bi { color: var(--svu-gold); font-size: 1.1rem; }
+
+.map-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* معرض الصور: صور مربعة صغيرة */
+.gallery-thumb {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background: none;
+  cursor: zoom-in;
+}
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.gallery-thumb:hover img { transform: scale(1.08); }
+
+.speaker-box {
+  background: var(--bg);
+  border-inline-start: 4px solid var(--svu-gold);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* ---------- 11. صفحة عن الدليل ---------- */
+.team-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--svu-blue), var(--svu-gold));
+  border: 4px solid var(--surface);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* قائمة السياسات بشبكة CSS Grid تتكيف تلقائياً مع عرض الشاشة */
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.policy-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+.policy-item .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--svu-gold);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- 12. صفحة الاتصال: أزرار السوشيال ---------- */
+.social-links {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.social-links a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  text-decoration: none;
+  background: rgba(196, 165, 108, 0.18);
+  color: var(--svu-gold);
+  transition: background-color 0.2s, color 0.2s;
+}
+.social-links a:hover { background: var(--svu-gold); color: #fff; }
+
+/* ---------- 13. التذييل ---------- */
+footer {
+  background-color: var(--svu-blue-dark);
+  color: #fff;
+  padding: 40px 0 20px;
+  margin-top: 50px;
+}
+footer a { color: rgba(255, 255, 255, 0.75); text-decoration: none; }
+footer a:hover { color: var(--svu-gold); }
+footer h3 { color: var(--svu-gold); }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); }
+
+/* ---------- 14. زر العودة للأعلى ---------- */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;          /* يسار الشاشة لأن الموقع من اليمين لليسار */
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--svu-gold);
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+.scroll-top-btn.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* ---------- 15. التجاوب مع الشاشات (Media Queries) ---------- */
+/* تابلت */
+@media (max-width: 991.98px) {
+  .carousel-img { height: 340px; }
+  .navbar-nav { padding-top: 0.75rem; }
+}
+
+/* جوال */
+@media (max-width: 575.98px) {
+  .carousel-img { height: 300px; }
+  .carousel-overlay { padding: 1.25rem 1.25rem 2.5rem; }
+  .carousel-overlay h3 { font-size: 1.1rem; }
+  .hero { padding: 2rem 1rem; }
+  .hero h1 { font-size: 1.5rem; }
+  .today-event { flex-direction: column; align-items: stretch; text-align: center; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .scroll-top-btn { bottom: 16px; left: 16px; }
+}
+
+/* ---------- 16. الشعار ---------- */
+/* الشعار أزرق، فنضعه داخل مربع أبيض بزوايا دائرية حتى يظهر بوضوح فوق الشريط الكحلي */
+.brand-logo {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  border-bottom: 3px solid var(--svu-gold);
+  transition: transform 0.25s ease;
+}
+.brand-logo img { max-width: 100%; max-height: 100%; }
+.navbar-brand:hover .brand-logo { transform: rotate(-4deg) scale(1.06); }
+.brand-logo-sm { width: 40px; height: 40px; border-radius: 10px; }
+
+/* اسم الدليل على سطرين: العنوان + اسم الجامعة بخط أصغر */
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-text small { font-size: 0.72rem; color: var(--svu-gold); font-weight: 600; }
+
+/* الشعار الكامل في صفحة "عن الدليل" داخل بطاقة بيضاء (تبقى بيضاء حتى في الوضع الداكن) */
+.about-logo {
+  display: inline-block;
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 6px 20px rgba(0, 83, 126, 0.12);
+  border-bottom: 4px solid var(--svu-gold);
+}
+.about-logo img { max-height: 150px; }
+
+@media (max-width: 575.98px) {
+  .brand-logo { width: 44px; height: 44px; }
+  .brand-text { font-size: 1rem; }
+  .brand-text small { font-size: 0.65rem; }
+}

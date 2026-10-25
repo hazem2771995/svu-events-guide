@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e8b57"/><stop offset="1" stop-color="#1f6b43"/></linearGradient></defs>
+
+<rect width="1200" height="700" fill="url(#g)"/>
+<g fill="#000" opacity=".06"><rect x="0" y="0" width="60" height="700"/><rect x="120" y="0" width="60" height="700"/><rect x="240" y="0" width="60" height="700"/><rect x="360" y="0" width="60" height="700"/><rect x="480" y="0" width="60" height="700"/><rect x="600" y="0" width="60" height="700"/><rect x="720" y="0" width="60" height="700"/><rect x="840" y="0" width="60" height="700"/><rect x="960" y="0" width="60" height="700"/><rect x="1080" y="0" width="60" height="700"/></g>
+<g fill="none" stroke="#fff" stroke-width="6" opacity=".85">
+<rect x="60" y="60" width="1080" height="580" rx="6"/>
+<line x1="600" y1="60" x2="600" y2="640"/>
+<circle cx="600" cy="350" r="95"/>
+<rect x="60" y="210" width="150" height="280"/><rect x="990" y="210" width="150" height="280"/>
+<rect x="60" y="280" width="60" height="140"/><rect x="1080" y="280" width="60" height="140"/>
+</g>
+<circle cx="600" cy="350" r="8" fill="#fff"/>
+<ellipse cx="760" cy="520" rx="70" ry="16" fill="#000" opacity=".25"/>
+<g transform="translate(760 440)">
+<circle r="80" fill="#fff" stroke="#222" stroke-width="4"/>
+<polygon points="0,-30 28,-9 18,24 -18,24 -28,-9" fill="#222"/>
+<polygon points="0,-80 18,-62 0,-50 -18,-62" fill="#222"/>
+<polygon points="76,-24 66,4 52,-12 60,-34" fill="#222"/>
+<polygon points="-76,-24 -60,-34 -52,-12 -66,4" fill="#222"/>
+<polygon points="46,64 30,74 22,52 40,46" fill="#222"/>
+<polygon points="-46,64 -40,46 -22,52 -30,74" fill="#222"/>
+</g>
+
+</svg>

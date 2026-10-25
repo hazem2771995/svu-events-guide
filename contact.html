@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تواصل مع إدارة دليل فعاليات SVU.">
+  <title>اتصل بنا - دليل فعاليات SVU</title>
+
+  <!-- أيقونة التبويب -->
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Bootstrap نسخة RTL للعربية -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+  <!-- أيقونات Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- ملف التنسيق الخاص بنا -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+  <!-- ========== الترويسة: الشعار + القائمة ========== -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-svu-blue shadow-sm">
+      <div class="container">
+        <!-- الشعار واسم الدليل -->
+        <a class="navbar-brand d-flex align-items-center gap-2 me-0 me-lg-4" href="index.html">
+          <span class="brand-logo"><img src="assets/img/logo-mark.png" alt="شعار الجامعة الافتراضية السورية"></span>
+          <span class="brand-text">
+            <span class="fw-bold">دليل فعاليات SVU</span>
+            <small>الجامعة الافتراضية السورية</small>
+          </span>
+        </a>
+
+        <div class="d-flex align-items-center gap-2 order-lg-last">
+          <!-- زر الوضع الداكن -->
+          <button id="themeToggle" class="btn theme-toggle" type="button" aria-label="تبديل الوضع الداكن">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+          <!-- زر القائمة للجوال -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="فتح القائمة">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- روابط الصفحات -->
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="index.html">الرئيسية</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="events.html">كل الفعاليات</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-3" href="about.html">عن الدليل</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active-svu px-3" href="contact.html" aria-current="page">اتصل بنا</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========== المحتوى الرئيسي ========== -->
+  <main class="container my-5">
+
+    <section class="text-center mb-5">
+      <h1 class="h2 fw-bold text-svu-blue mb-2">تواصل مع إدارة الفعاليات</h1>
+      <p class="text-muted">هل لديك استفسار أو ترغب في اقتراح فعالية جديدة؟ نسعد باستقبال رسالتك.</p>
+    </section>
+
+    <div class="row g-4">
+
+      <!-- نموذج المراسلة -->
+      <section class="col-12 col-lg-7" aria-labelledby="formTitle">
+        <div class="card border-0 shadow-sm p-4 p-md-5">
+          <h2 id="formTitle" class="h5 fw-bold text-svu-blue mb-4">أرسل لنا رسالة</h2>
+
+          <!-- رسالة النجاح أو الفشل (Bootstrap Alert تظهر بالـ JS) -->
+          <div id="formAlert" class="alert d-none small mb-4" role="alert"></div>
+
+          <!-- novalidate: نوقف تحقق المتصفح الافتراضي لأننا نتحقق بالـ JavaScript -->
+          <form id="contactForm" novalidate>
+            <div class="mb-3">
+              <label for="userName" class="form-label small fw-semibold">الاسم الكامل <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="userName" placeholder="اكتب اسمك الكامل...">
+              <div class="invalid-feedback">الاسم مطلوب (3 أحرف على الأقل).</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="userEmail" class="form-label small fw-semibold">البريد الإلكتروني <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="userEmail" placeholder="example@domain.com">
+              <div class="invalid-feedback">أدخل بريداً إلكترونياً بصيغة صحيحة، مثل name@svuonline.org</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="subjectSelect" class="form-label small fw-semibold">موضوع الرسالة</label>
+              <select class="form-select" id="subjectSelect">
+                <option value="general">استفسار عام</option>
+                <option value="event">استفسار حول فعالية معينة</option>
+                <option value="suggestion">اقتراح فعالية أو ورشة عمل</option>
+                <option value="technical">مشكلة تقنية في الموقع</option>
+              </select>
+            </div>
+
+            <div class="mb-4">
+              <label for="userMessage" class="form-label small fw-semibold">نص الرسالة <span class="text-danger">*</span></label>
+              <textarea class="form-control" id="userMessage" rows="5" placeholder="اكتب رسالتك بالتفصيل هنا..."></textarea>
+              <div class="invalid-feedback">الرسالة مطلوبة (10 أحرف على الأقل).</div>
+            </div>
+
+            <button type="submit" class="btn btn-svu-gold w-100 py-2 fw-semibold">
+              <i class="bi bi-send"></i> إرسال الرسالة
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- معلومات تواصل بديلة -->
+      <aside class="col-12 col-lg-5">
+        <div class="card border-0 shadow-sm p-4 mb-4">
+          <h2 class="h5 fw-bold text-svu-blue mb-4">معلومات الدعم والتواصل</h2>
+
+          <div class="d-flex align-items-start gap-3 mb-3">
+            <i class="bi bi-geo-alt fs-4 text-svu-blue"></i>
+            <div>
+              <h3 class="h6 fw-bold mb-1">المقر الرئيسي:</h3>
+              <p class="text-muted small mb-0">الجمهورية العربية السورية - دمشق - وزارة التعليم العالي</p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start gap-3 mb-3">
+            <i class="bi bi-envelope fs-4 text-svu-blue"></i>
+            <div>
+              <h3 class="h6 fw-bold mb-1">البريد العام:</h3>
+              <p class="small mb-0"><a href="mailto:info@svuonline.org" class="text-muted">info@svuonline.org</a></p>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <i class="bi bi-clock fs-4 text-svu-blue"></i>
+            <div>
+              <h3 class="h6 fw-bold mb-1">أوقات العمل:</h3>
+              <p class="text-muted small mb-0">الأحد - الخميس (09:00 صباحاً - 03:00 مساءً)</p>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mb-2">تابعنا على مواقع التواصل:</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/SVUonline" target="_blank" rel="noopener" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://t.me/" target="_blank" rel="noopener" aria-label="تيليغرام"><i class="bi bi-telegram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="يوتيوب"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="إنستغرام"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="لينكدإن"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-sm p-4 border-start border-4 border-warning">
+          <h2 class="h6 fw-bold text-svu-blue mb-2">مراكز النفاذ الطلابي (Telecenters):</h2>
+          <p class="text-muted small mb-0">
+            يمكن لطلاب الجامعة في مختلف المحافظات مراجعة مراكز النفاذ المعتمدة للاستفسار والمشاركة في الفعاليات حضورياً.
+          </p>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ========== التذييل: نبذة + روابط + تواصل ========== -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-5">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="brand-logo brand-logo-sm"><img src="assets/img/logo-mark.png" alt="شعار الجامعة الافتراضية السورية"></span>
+            <h3 class="h6 fw-bold mb-0">دليل فعاليات SVU</h3>
+          </div>
+          <p class="small text-white-50 mb-3">
+            الدليل الموحد للأنشطة الثقافية والرياضية والأكاديمية والمهنية لطلاب الجامعة الافتراضية السورية.
+          </p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/SVUonline" target="_blank" rel="noopener" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://t.me/" target="_blank" rel="noopener" aria-label="تيليغرام"><i class="bi bi-telegram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="يوتيوب"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="إنستغرام"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h3 class="h6 fw-bold mb-3">روابط سريعة</h3>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2"><a href="index.html">الرئيسية</a></li>
+            <li class="mb-2"><a href="events.html">كل الفعاليات</a></li>
+            <li class="mb-2"><a href="about.html">عن الدليل</a></li>
+            <li class="mb-2"><a href="contact.html">اتصل بنا</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-4">
+          <h3 class="h6 fw-bold mb-3">تواصل معنا</h3>
+          <ul class="list-unstyled small mb-0">
+            <li class="mb-2"><i class="bi bi-envelope"></i> <a href="mailto:info@svuonline.org">info@svuonline.org</a></li>
+            <li class="mb-2"><i class="bi bi-telephone"></i> <span dir="ltr">+963 11 0000000</span></li>
+            <li class="mb-2"><i class="bi bi-geo-alt"></i> دمشق - الجمهورية العربية السورية</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom text-center mt-4 pt-3">
+        <p class="mb-0 small text-white-50">جميع الحقوق محفوظة © 2026 - دليل فعاليات الجامعة الافتراضية السورية SVU</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== ملفات JavaScript ========== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
